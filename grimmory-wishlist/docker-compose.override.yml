@@ -1,0 +1,17 @@
+# Drop next to your Grimmory docker-compose.yml. `docker compose up -d` picks it up automatically.
+services:
+  wishlist:
+    build: ./grimmory-wishlist
+    restart: unless-stopped
+    env_file: ./grimmory-wishlist/.env
+    environment:
+      GRIMMORY_URL: ${WISHLIST_GRIMMORY_URL:-http://grimmory:6060}
+    volumes:
+      - wishlist-data:/data
+    # no published ports: only the nginx proxy talks to it
+  proxy:
+    depends_on:
+      - wishlist
+
+volumes:
+  wishlist-data:

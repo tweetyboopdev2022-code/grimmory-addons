@@ -1,0 +1,6 @@
+# Merge into the docker-compose.override.yml next to Grimmory's docker-compose.yml: the proxy
+# serves the Kobo setup page from this folder, read-only.
+services:
+  proxy:
+    volumes:
+      - ./grimmory-kobo-setup/public:/usr/share/nginx/kobo-setup:ro

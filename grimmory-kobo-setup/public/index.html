@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connect your Kobo</title>
+  <link rel="stylesheet" href="setup.css">
+  <script src="kobo-core.js" defer></script>
+  <script src="setup.js" defer></script>
+</head>
+<body>
+  <main id="app" class="ks">
+    <header class="ks-head">
+      <a class="ks-back" href="/">&larr; Back to the library</a>
+      <h1>Connect your Kobo</h1>
+      <p class="ks-lead">Plug your Kobo into this computer and this page sets it up to get books from the
+        library by itself, using the library's Kobo sync: it connects the Kobo to your account.
+        It makes a backup on the Kobo first, so every change can be undone.</p>
+      <p id="who" class="ks-who" hidden></p>
+    </header>
+
+    <section id="signin" class="ks-card" hidden>
+      <h2>Sign in first</h2>
+      <p>Open <a href="/">the library</a>, sign in, then come back to this page.</p>
+    </section>
+
+    <section id="nobrowser" class="ks-card" hidden>
+      <h2>This browser can't reach your Kobo</h2>
+      <p>Setting up from this page needs <strong>Google Chrome</strong> or <strong>Microsoft Edge</strong> on a
+        computer. Open this page in one of those, or use the double-click file below instead.</p>
+    </section>
+
+    <section id="step-pick" class="ks-card" hidden>
+      <h2><span class="ks-num">1</span> Plug in your Kobo</h2>
+      <ol class="ks-steps">
+        <li>Connect the Kobo to this computer with its USB cable.</li>
+        <li>On the Kobo, tap <strong>Connect</strong>.</li>
+        <li>Click the button below and choose the drive called <strong>KOBOeReader</strong>.
+          Chrome then asks whether this page may change files there: choose <strong>Allow</strong>
+          (it says "Edit files" or "View and edit").</li>
+      </ol>
+      <button id="pick" class="ks-btn ks-primary" type="button">Choose my Kobo</button>
+      <p id="pick-error" class="ks-error" role="alert" hidden></p>
+    </section>
+
+    <section id="step-plan" class="ks-card" hidden>
+      <h2><span class="ks-num">2</span> Choose what to set up</h2>
+      <dl id="kobo-info" class="ks-info"></dl>
+      <div id="warnings"></div>
+      <form id="plan-form">
+        <fieldset id="choices" class="ks-choices"></fieldset>
+        <button id="apply" class="ks-btn ks-primary" type="submit">Set up my Kobo</button>
+      </form>
+    </section>
+
+    <section id="step-run" class="ks-card" hidden>
+      <h2><span class="ks-num">3</span> <span id="run-title">Setting up</span></h2>
+      <ul id="log" class="ks-log" aria-live="polite"></ul>
+      <div id="done" hidden>
+        <h3>All done. Now:</h3>
+        <ol class="ks-steps">
+          <li><strong>Eject the Kobo</strong> before unplugging it (Mac: the eject arrow next to KOBOeReader in Finder.
+            Windows: "Safely Remove Hardware" in the taskbar, or right-click the drive and choose Eject).</li>
+          <li id="done-sync" hidden>On the Kobo, connect to Wi-Fi and tap <strong>Sync</strong> (the circle arrows
+            at the top of the home screen). Books you put on your <strong>Kobo</strong> shelf in the library arrive
+            on the Kobo.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="tools" class="ks-card" hidden>
+      <h2>Backups and undo</h2>
+      <p>Every time something here changes your Kobo, the old files are kept on the Kobo first. Undo puts them
+        back. You can also save a copy of the Kobo's settings, reading progress and add-on folder to this computer.</p>
+      <button id="download-backup" class="ks-btn" type="button">Save a backup to this computer</button>
+      <div id="undo-list" class="ks-undo"></div>
+    </section>
+
+    <section id="downloads" class="ks-card">
+      <h2>Not on Chrome or Edge? Use a double-click file</h2>
+      <p>These do the main setup (connect to your account, tidy up) from a file you double-click
+        with the Kobo plugged in. They ask for your library username and password.</p>
+      <ul class="ks-dl">
+        <li><a href="downloads/Connect-my-Kobo-Mac.zip" download>Mac: Connect my Kobo</a>
+          <span>Open the download, then double-click <em>Connect my Kobo</em>. The first time, the Mac says it
+            can't check the file: open <strong>System Settings &rarr; Privacy &amp; Security</strong>, scroll down and
+            click <strong>Open Anyway</strong>.</span></li>
+        <li><a href="downloads/Connect-my-Kobo.cmd" download>Windows: Connect my Kobo</a>
+          <span>If the browser asks whether to keep it, choose <strong>Keep</strong>. Then double-click it. If
+            Windows says it protected your PC, click <strong>More info</strong>, then <strong>Run anyway</strong>.</span></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

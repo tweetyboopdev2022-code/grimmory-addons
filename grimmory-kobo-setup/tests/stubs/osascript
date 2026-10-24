@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+// Test stand-in for macOS osascript: runs `osascript -l JavaScript -e CODE args...` in Node, with
+// the one Objective-C bridge call the Mac file uses.
+const fs = require('fs');
+const a = process.argv.slice(2);
+if (a[0] !== '-l' || a[1] !== 'JavaScript' || a[2] !== '-e') { console.error('stub osascript: unexpected args'); process.exit(2); }
+global.$ = { NSString: { stringWithContentsOfFileEncodingError: (p) => ({ js: fs.readFileSync(p, 'utf8') }) } };
+const run = new Function(a[3] + '\nreturn run;')();
+const out = run(a.slice(4));
+if (out !== undefined) process.stdout.write(String(out) + '\n');
